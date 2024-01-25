@@ -2,6 +2,7 @@ import { useState } from "react"
 import GameBoard from "./components/Gameboard/GameBoard"
 import Player from "./components/Player/Player"
 import Log from "./components/Log/Log";
+import GameOver from "./components/GameOver/GameOver";
 
 const PLAYERS = {
   X: 'Player 1',
@@ -75,6 +76,7 @@ function App() {
             
           />
         </ol>
+        <GameOver />
         <GameBoard 
           onSelectSquare={handleSelectSquare} 
           board={gameBoard}
