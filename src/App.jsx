@@ -3,6 +3,7 @@ import GameBoard from "./components/Gameboard/GameBoard"
 import Player from "./components/Player/Player"
 import Log from "./components/Log/Log";
 import GameOver from "./components/GameOver/GameOver";
+import { WINNING_COMBINATIONS } from './winning-combinations.js';
 
 const PLAYERS = {
   X: 'Player 1',
@@ -36,6 +37,26 @@ function deriveGameBoard (gameTurns) {
   }
 
   return gameBoard;
+}
+
+function deriveWinner(gameBoard, players) {
+  let winner = null ;
+
+  for (const combination of WINNING_COMBINATIONS) {
+    const firstSquareSymbol = gameBoard[combination[0].row][combination[0].column];
+    const secondSquareSymbol = gameBoard[combination[1].row][combination[1].column];
+    const thirdSquareSymbol = gameBoard[combination[2].row][combination[2].column];
+
+    if (
+      firstSquareSymbol && 
+      firstSquareSymbol === secondSquareSymbol && 
+      firstSquareSymbol === thirdSquareSymbol
+      ) {
+      winner = players[firstSquareSymbol];
+    }
+  }
+
+  return winner;
 }
 
 function App() {
