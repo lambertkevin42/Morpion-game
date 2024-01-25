@@ -1,16 +1,29 @@
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import "./player.css";
 
-function Player({ name, symbol }) {
+export default function Player({ name, symbol }) {
+
+    const [ isEditing, setIsEditing ] = useState(false);
+
+    function handleEditClick() {
+        setIsEditing(true);
+    }
+
+    let playerName = <span className="player-name">{name}</span>;
+
+    if (isEditing ) {
+        playerName = <input type="text" requiered />       
+    }
+
     return(
-        <li>
+        <li className="player">
             <span className="player">
-                <span className="player-name">{name}</span>
-                <span className="player-symbol">{symbol}</span>
+              {playerName}
+              <span className="player-symbol">{symbol}</span>
             </span>
-            <button>Editer</button>
+            <button onClick={handleEditClick}>Editer</button>
         </li>
     );
 }
-
-export default Player
