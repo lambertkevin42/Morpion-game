@@ -82,6 +82,10 @@ function App() {
     });
   }
 
+  function handleRestart() {
+    setGameTurns([]);
+  }
+
   function handlePlayerNamChange(symbol, newName) {
     setPlayer(prevPlayer => {
       return{
@@ -110,7 +114,7 @@ function App() {
             onChangeName={handlePlayerNamChange}
           />
         </ol>
-        {(winner || hasDraw) && <GameOver winner={winner}/>}
+        {(winner || hasDraw) && <GameOver winner={winner} onRestart={handleRestart}/>}
         <GameBoard 
           onSelectSquare={handleSelectSquare} 
           board={gameBoard}
